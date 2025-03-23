@@ -113,3 +113,14 @@ def logout_user():
     email_entry.delete(0, tk.END)
     messagebox.showinfo("Logout", "You have been logged out!")
 
+# Function to upload and encrypt a file
+def upload_and_encrypt():
+    if not session_key:
+        messagebox.showerror("Error", "Please log in first!")
+        return
+    filepath = filedialog.askopenfilename()
+    if filepath:
+        encrypted_filepath = encrypt_file(filepath, session_key)
+        if encrypted_filepath:
+            messagebox.showinfo("Success", f"File encrypted: {encrypted_filepath}")
+
